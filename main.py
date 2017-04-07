@@ -11,6 +11,7 @@ STEAMID = {0: 76561198064646048, 1: 76561198032032720, 2: 76561198131077689,
 def return_total_kills(list=None):
     return {df['Name'][i]: {"Kills": df['Kills'][i], "SteamID": df['SteamID'][i]} for i in list}
 
+names = [(i) for i, n in enumerate([name for name in df['Name']])]
 
 def print_dict_component(dict_key, dictt=None):
 
@@ -19,12 +20,18 @@ def print_dict_component(dict_key, dictt=None):
         for i, std in enumerate([player_id for player_id in STEAMID.values()]):
             if (values[dict_key]) == STEAMID[i]:
                 new_values[key] = values['Kills']
-    print(new_values)
+    return (new_values)
 
-names = [(i) for i, n in enumerate([name for name in df['Name']])]
-#print(return_total_kills(names))
+
+
 diccct = return_total_kills(names)
-print_dict_component("SteamID", diccct)
+namenkills = print_dict_component("SteamID", diccct)
 
+namesalive = list(namenkills.keys())
+killsalive = list(namenkills.values())
+
+newdf = pd.DataFrame({
+                    'Name': namesalive,
+                    'Kills' : killsalive})
 
 
