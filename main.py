@@ -1,8 +1,17 @@
 #Colin Mcrae
+import os
 import pandas as pd
 from openpyxl import load_workbook
+import xlsx2csv
 
-df = pd.read_csv("example.csv")
+files = []
+def identifymatch():
+    cwd = os.getcwd()
+    for file in os.listdir(cwd):
+        if file.startswith("match"):
+            return file
+
+df = pd.read_csv(identifymatch())
 
 
 STEAMID = {0: 76561198064646048, 1: 76561198032032720, 2: 76561198131077689,
